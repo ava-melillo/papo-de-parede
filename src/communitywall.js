@@ -28,17 +28,13 @@ let dbSnapshot = null;
 let dbUpdateDelay = 500;
 let inputId = null;
 
-function preload(){
-
-  //muralData = loadJSON('data.json');
-}
 
 function setup() {
 
   pixelDensity(1);
   createCanvas(windowWidth, 2000);
   
-  grid = new DrawingGrid(squareSize, muralData);
+  grid = new DrawingGrid(squareSize);
   grid.drawGrid();
   
   colorPicker = new ColorPicker();
@@ -92,7 +88,7 @@ function paintSquare(){
   let currentSquare = {id: j.toString() + i.toString(), posX: j, posY: i, color: colorPicker.currentColor}
 
 
-  let currentId = grid.hasInputId(currentSquare.id);
+  let currentId = findColoredSquare(grid.userInput, currentSquare.id);
 
   if (currentId != null) grid.userInput[currentId] = currentSquare;
   else {
@@ -141,11 +137,14 @@ function reloadGrid(){
 
 }
 
-function updateDatabase(){
+function findColoredSquare(drawing, squareId){
 
-  if ((frameCount % dbUpdateDelay == 0) && (dbSnapshot != null)){
+  for (let i = 0; i < drawing.length; i++){
 
-    writeDrawingData(inputId, grid.userInput);
-  }
+        if (drawing[i].id == id) return i;
+      }
+
+      return null;
+
 }
 

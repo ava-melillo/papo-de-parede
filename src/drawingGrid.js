@@ -49,13 +49,4 @@ class DrawingGrid{
     }
   }
 
-  hasInputId(id){
-
-    for (let i = 0; i < grid.userInput.length; i++){
-
-      if (grid.userInput[i].id == id) return i;
-    }
-
-    return null;
-  }
 }
