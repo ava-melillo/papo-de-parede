@@ -5,34 +5,43 @@
 
 *****Coisos fazer:*****
  
- - manter posicao dos swatches fixa
+ -/ manter posicao dos swatches fixa
  - limpar essas variáveis q tao antes do preload
- - ta dando erro quando o mouse desenha numa coordenada maior q a do canvas (ja resolvi a menor)
- - mandar ver no banco de dados ne. boa sorte
+ -/ ta dando erro quando o mouse desenha numa coordenada maior q a do canvas (ja resolvi a menor)
+ -/ mandar ver no banco de dados ne. boa sorte
 
 */
 
 let squareSize = 5;
+let inputMaxLength = 400;
+let numShownDrawings = 50;
+let colorBg = "#EAE3DC";
+
+let bgRef = "bg.webp";
+let bg;
 
 let grid;
 let colorPicker;
 
-let muralData = [];
-
 let movingMouseWheel = false;
 let endedScroll = false;
 
-let pixel;
-
 let dbSnapshot = null;
-let dbUpdateDelay = 500;
 let inputId = null;
 
+function preload(){
+
+  bg = loadImage(bgRef);
+}
 
 function setup() {
 
   pixelDensity(1);
-  createCanvas(windowWidth, 2000);
+  createCanvas(windowWidth, 3000);
+  
+  //image(bg, 0, 0, windowWidth, 0);
+  //image(bg, 0, bg.height, windowWidth, 0);
+  background(colorBg);
   
   grid = new DrawingGrid(squareSize);
   grid.drawGrid();
@@ -40,21 +49,9 @@ function setup() {
   colorPicker = new ColorPicker();
   colorPicker.drawColors();
   
-  
 }
 
 function draw() {
-  
-  //grid.drawGrid();
-  //colorPicker.drawColors();
-
-  /*
-  for (let i = 0; i < grid.userInput.length; i++){
-
-    pixel = grid.userInput[i];
-    grid.squares[pixel.posY][pixel.posX].drawSquare(pixel.color);
-  }
-    */
 
   if (movingMouseWheel == false){
 
@@ -64,7 +61,6 @@ function draw() {
         endedScroll = false;
     }
   }
-  
   
   if (mouseIsPressed){
   
@@ -96,7 +92,7 @@ function paintSquare(){
     grid.userInput.push(currentSquare);
   }
 
-  if (grid.userInput.length > 200){
+  if (grid.userInput.length > inputMaxLength){
     
     let temp = grid.userInput[0];
 
@@ -124,8 +120,14 @@ function mouseWheel() {
 
 function reloadGrid(){
 
+  //image(bg, 0, 0, windowWidth, 0);
+  //image(bg, 0, bg.height, windowWidth, 0);
+  background(colorBg);
+
+
   grid.drawGrid();
 
+  let pixel;
   for (let i = 0; i < grid.userInput.length; i++){
 
     pixel = grid.userInput[i];
@@ -141,10 +143,9 @@ function findColoredSquare(drawing, squareId){
 
   for (let i = 0; i < drawing.length; i++){
 
-        if (drawing[i].id == id) return i;
+        if (drawing[i].id == squareId) return i;
       }
 
       return null;
 
 }
-

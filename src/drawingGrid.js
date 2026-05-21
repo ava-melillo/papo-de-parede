@@ -16,7 +16,7 @@ class DrawingGrid{
       this.muralData[i] = []
       for (let j = 0; j < this.w; j++){
       
-        this.muralData[i][j] = "#77B1DB";
+        this.muralData[i][j] = null;
       }
     }
     
@@ -44,6 +44,8 @@ class DrawingGrid{
     for (let i = 0; i < this.h; i++){
       for (let j = 0; j < this.w; j++){
       
+        if(this.muralData[i][j] == null) continue;
+        
         this.squares[i][j].drawSquare(this.muralData[i][j]);
       }
     }

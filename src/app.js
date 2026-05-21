@@ -90,7 +90,7 @@ function findSquare(drawing, squareId){
 
 function loadDrawingDb(drawingsData){
 
-  const drawings = drawingsData.slice(-10);
+  const drawings = drawingsData.slice(-1 * numShownDrawings);
   
   console.log(drawings);
 
