@@ -17,7 +17,7 @@ let inputMaxLength = 400;
 let numShownDrawings = 50;
 let colorBg = "#EAE3DC";
 
-let bgRef = "bg.webp";
+let bgRef;
 let bg;
 
 let grid;
@@ -31,17 +31,19 @@ let inputId = null;
 
 function preload(){
 
-  bg = loadImage(bgRef);
+  bgRef = "parede" + 2 + ".webp";
+  bg = loadImage(bgRef); 
 }
 
 function setup() {
 
+
   pixelDensity(1);
   createCanvas(windowWidth, 3000);
   
-  //image(bg, 0, 0, windowWidth, 0);
+  image(bg, 0, 0, windowWidth, 0);
   //image(bg, 0, bg.height, windowWidth, 0);
-  background(colorBg);
+  //background(colorBg);
   
   grid = new DrawingGrid(squareSize);
   grid.drawGrid();
@@ -120,9 +122,9 @@ function mouseWheel() {
 
 function reloadGrid(){
 
-  //image(bg, 0, 0, windowWidth, 0);
+  image(bg, 0, 0, windowWidth, 0);
   //image(bg, 0, bg.height, windowWidth, 0);
-  background(colorBg);
+  //background(colorBg);
 
 
   grid.drawGrid();

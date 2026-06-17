@@ -2,7 +2,7 @@ class ColorPicker{
 
   constructor(){
   
-    this.colorValues = ["#4477ff","#ff7744","#66bb88","#ffcc44","#ff5555", "#330000"];
+    this.colorValues = ["#0c2789","#960101","#016847","#c47a03","#eae2d5", "#330000"];
     this.colorSwatches = [];
     this.currentColor = this.colorValues[0];
     

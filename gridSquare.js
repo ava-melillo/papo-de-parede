@@ -8,7 +8,6 @@ class GridSquare{
       x: posX,
       y: posY
     };
-  
   }
   
   drawSquare(collor){
@@ -17,7 +16,4 @@ class GridSquare{
     fill(collor);
     square(this.pos.x, this.pos.y, this.size);
   }
-  
-
-
 }
