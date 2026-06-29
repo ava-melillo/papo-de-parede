@@ -13,7 +13,16 @@ class GridSquare{
   drawSquare(collor){
   
     noStroke();
-    fill(collor);
+
+    if (collor == null || collor == undefined){
+
+      fill(255, 0);
+    }
+    else{
+
+      fill(collor);
+    }
+
     square(this.pos.x, this.pos.y, this.size);
   }
 }

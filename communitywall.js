@@ -8,12 +8,11 @@
  -/ manter posicao dos swatches fixa
  - limpar essas variáveis q tao antes do preload
  -/ ta dando erro quando o mouse desenha numa coordenada maior q a do canvas (ja resolvi a menor)
- -/ mandar ver no banco de dados ne. boa sorte
 
 */
 
 let squareSize = 5;
-let inputMaxLength = 400;
+let inputMaxLength = 500;
 let numShownDrawings = 50;
 let colorBg = "#EAE3DC";
 
@@ -69,6 +68,7 @@ function draw() {
     paintSquare();
   }
 
+
   movingMouseWheel = false;
 }
 
@@ -83,6 +83,7 @@ function paintSquare(){
   let i = floor(mouseY/squareSize);
   let j = floor(mouseX/squareSize);
 
+  
   let currentSquare = {id: j.toString() + i.toString(), posX: j, posY: i, color: colorPicker.currentColor}
 
 
@@ -94,12 +95,13 @@ function paintSquare(){
     grid.userInput.push(currentSquare);
   }
 
-  if (grid.userInput.length > inputMaxLength){
+  if (grid.userInput.length >= inputMaxLength){
     
     let temp = grid.userInput[0];
 
     grid.squares[temp.posY][temp.posX].drawSquare( grid.muralData[temp.posY][temp.posX]);
     grid.userInput.shift();
+    reloadGrid();
 
   }
 
@@ -123,9 +125,6 @@ function mouseWheel() {
 function reloadGrid(){
 
   image(bg, 0, 0, windowWidth, 0);
-  //image(bg, 0, bg.height, windowWidth, 0);
-  //background(colorBg);
-
 
   grid.drawGrid();
 

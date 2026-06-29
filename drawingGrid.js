@@ -3,7 +3,7 @@ class DrawingGrid{
   constructor(squareSize){
   
     this.w = windowWidth / squareSize;
-    this.h = 2000 / squareSize;
+    this.h = 3000 / squareSize;
     
     this.squareSize = squareSize;
     this.squares = [];
